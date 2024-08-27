@@ -15,10 +15,10 @@ class Db
         }
     }
 
-    public function query($query)
+    public function query($query, $params = [])
     {
         $this->stmt = $this->connection->prepare($query);
-        $this->stmt->execute();
+        $this->stmt->execute($params);
         return $this;
     }
 
@@ -39,7 +39,7 @@ class Db
         if (!$res) {
             abort();
         }
-        
+
         return $res;
     }
 }
