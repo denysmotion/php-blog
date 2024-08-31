@@ -27,3 +27,8 @@ function load($fillable = [])
     }
     return $data;
 }
+
+function old($fieldname)
+{
+    return isset($_POST[$fieldname]) ? $_POST[$fieldname] : '';
+}

@@ -7,7 +7,7 @@
             <h1>New post</h1>
             <form method="post">
                 <div class="mb-3">
-                    <input name="title" type="text" class="form-control" id="title" placeholder="Title">
+                    <input name="title" type="text" class="form-control" id="title" placeholder="Title" value="<?= old('title') ?>">
                     <?php if (isset($errors['title'])): ?>
                         <div class="invalid-feedback d-block">
                             <?= $errors['title'] ?>
@@ -15,7 +15,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="mb-3">
-                    <textarea name="excerpt" type="text" class="form-control" id="excerpt" placeholder="Excerpt" rows="2"></textarea>
+                    <textarea name="excerpt" type="text" class="form-control" id="excerpt" placeholder="Excerpt" rows="2"><?= old('excerpt') ?></textarea>
                     <?php if (isset($errors['excerpt'])): ?>
                         <div class="invalid-feedback d-block">
                             <?= $errors['excerpt'] ?>
@@ -23,7 +23,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="mb-3">
-                    <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" rows="6"></textarea>
+                    <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" rows="6"><?= old('content') ?></textarea>
                     <?php if (isset($errors['content'])): ?>
                         <div class="invalid-feedback d-block">
                             <?= $errors['content'] ?>
