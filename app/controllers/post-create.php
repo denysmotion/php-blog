@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+require_once CORE . '/classes/Validator.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -6,7 +8,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $data = load($fillable);
 
-    $errors = [];
+    $validator = new Validator();
+    $validation = $validator->validate($data, [
+        'title' => [
+            'required' => true,
+            'min' => 5,
+            'max' => 255,
+        ],
+        'excerpt' => [
+            'required' => true,
+            'min' => 10,
+            'max' => 255,
+        ],
+        'content' => [
+            'required' => true,
+            'min' => 100,
+        ],
+    ]);
+
+    var_dump($validation->has_errors());    
+
+    die;
+
     if (empty($data['title'])) {
         $errors['title'] = 'Title is required';
     }
