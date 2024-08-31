@@ -7,24 +7,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = load($fillable);
 
     $errors = [];
-    if (empty(trim($data['title']))) {
+    if (empty($data['title'])) {
         $errors['title'] = 'Title is required';
     }
 
-    if (empty(trim($data['excerpt']))) {
+    if (empty($data['excerpt'])) {
         $errors['excerpt'] = 'Exerpt is required';
     }
 
-    if (empty(trim($data['content']))) {
+    if (empty($data['content'])) {
         $errors['content'] = 'Content is required';
     }
 
     if (empty($errors)) {
-        $db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (?, ?, ?)", [
-            $_POST['title'],
-            $_POST['excerpt'],
-            $_POST['content'],
-        ]);
+        if ($db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data)) {
+           echo 'OK'; 
+        } else {
+            echo 'DB Error';
+        }
+        
+        //redirect('/posts/create');
     }
 
     
