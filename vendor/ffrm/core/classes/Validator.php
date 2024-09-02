@@ -1,5 +1,7 @@
 <?php
 
+namespace ffrm;
+
 class Validator
 {
     protected $errors = [];

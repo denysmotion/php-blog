@@ -1,5 +1,7 @@
 <?php
 
+use ffrm\Validator;
+
 require_once CORE . '/classes/Validator.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
