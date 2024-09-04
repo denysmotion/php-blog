@@ -24,37 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ],
         'content' => [
             'required' => true,
-            'min' => 100,
+            'min' => 10,
         ],
     ]);
 
-    var_dump($validation->has_errors());    
-
-    die;
-
-    if (empty($data['title'])) {
-        $errors['title'] = 'Title is required';
-    }
-
-    if (empty($data['excerpt'])) {
-        $errors['excerpt'] = 'Exerpt is required';
-    }
-
-    if (empty($data['content'])) {
-        $errors['content'] = 'Content is required';
-    }
-
-    if (empty($errors)) {
+    if (!$validation->has_errors()) {
         if ($db->query("INSERT INTO posts (`title`, `excerpt`, `content`) VALUES (:title, :excerpt, :content)", $data)) {
-           echo 'OK'; 
+            $_SESSION['success'] = 'Ok';
         } else {
-            echo 'DB Error';
+            $_SESSION['error'] = 'Db error';
         }
-        
-        //redirect('/posts/create');
+        redirect();
     }
 
-    
 }
 
 $title = 'New post';

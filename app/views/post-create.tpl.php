@@ -8,27 +8,15 @@
             <form method="post">
                 <div class="mb-3">
                     <input name="title" type="text" class="form-control" id="title" placeholder="Title" value="<?= old('title') ?>">
-                    <?php if (isset($errors['title'])): ?>
-                        <div class="invalid-feedback d-block">
-                            <?= $errors['title'] ?>
-                        </div>
-                    <?php endif; ?>
+                    <?= isset($validation) ? $validation->list_errors('title') : '' ?>
                 </div>
                 <div class="mb-3">
                     <textarea name="excerpt" type="text" class="form-control" id="excerpt" placeholder="Excerpt" rows="2"><?= old('excerpt') ?></textarea>
-                    <?php if (isset($errors['excerpt'])): ?>
-                        <div class="invalid-feedback d-block">
-                            <?= $errors['excerpt'] ?>
-                        </div>
-                    <?php endif; ?>
+                    <?= isset($validation) ? $validation->list_errors('excerpt') : '' ?>
                 </div>
                 <div class="mb-3">
                     <textarea name="content" type="text" class="form-control" id="content" placeholder="Content" rows="6"><?= old('content') ?></textarea>
-                    <?php if (isset($errors['content'])): ?>
-                        <div class="invalid-feedback d-block">
-                            <?= $errors['content'] ?>
-                        </div>
-                    <?php endif; ?>
+                    <?= isset($validation) ? $validation->list_errors('content') : '' ?>
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
                 </form>
